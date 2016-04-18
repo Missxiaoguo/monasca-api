@@ -148,9 +148,9 @@ function install_monasca {
 
 function update_maven {
 
-    sudo apt-get -y remove maven2
+    sudo yum -y remove maven2
 
-    sudo apt-get -y install maven
+    sudo yum -y install maven
 
 }
 
@@ -349,7 +349,7 @@ function install_zookeeper {
 
     echo_summary "Install Monasca Zookeeper"
 
-    sudo apt-get -y install zookeeperd
+    sudo yum -y install zookeeperd
 
     sudo cp "${MONASCA_BASE}"/monasca-api/devstack/files/zookeeper/zoo.cfg /etc/zookeeper/conf/zoo.cfg
 
@@ -377,9 +377,9 @@ function clean_zookeeper {
 
     echo_summary "Clean Monasca Zookeeper"
 
-    sudo apt-get -y purge zookeeperd
+    sudo yum -y purge zookeeperd
 
-    sudo apt-get -y purge zookeeper
+    sudo yum -y purge zookeeper
 
     sudo rm -rf /etc/zookeeper
 
@@ -509,7 +509,7 @@ function install_monasca_vertica {
 
     # sudo mkdir -p /opt/monasca_download_dir || true
 
-    sudo apt-get -y install dialog
+    sudo yum -y install dialog
 
     sudo dpkg --skip-same-version -i /vagrant_home/vertica_${VERTICA_VERSION}_amd64.deb
 
@@ -581,7 +581,7 @@ function clean_monasca_vertica {
 
     sudo rm -rf /home/dbadmin
 
-    sudo apt-get -y purge dialog
+    sudo yum -y purge dialog
 }
 
 function install_cli_creds {
@@ -683,7 +683,7 @@ function install_openjdk_7_jdk {
 
     echo_summary "Install Monasca openjdk_7_jdk"
 
-    sudo apt-get -y install openjdk-7-jdk
+    sudo yum -y install openjdk-7-jdk
 
 }
 
@@ -691,9 +691,9 @@ function clean_openjdk_7_jdk {
 
     echo_summary "Clean Monasca openjdk_7_jdk"
 
-    sudo apt-get -y purge openjdk-7-jdk
+    sudo yum -y purge openjdk-7-jdk
 
-    sudo apt-get -y autoremove
+    sudo yum -y autoremove
 
 }
 
@@ -701,7 +701,7 @@ function install_maven {
 
     echo_summary "Install Monasca Maven"
 
-    sudo apt-get -y install maven
+    sudo yum -y install maven
 
 }
 
@@ -709,14 +709,14 @@ function clean_maven {
 
     echo_summary "Clean Monasca Maven"
 
-    sudo apt-get -y purge maven
+    sudo yum -y purge maven
 }
 
 function install_git {
 
     echo_summary "Install git"
 
-    sudo apt-get -y install git
+    sudo yum -y install git
 
 }
 
@@ -824,8 +824,8 @@ function install_monasca_api_python {
 
     echo_summary "Install Monasca monasca_api_python"
 
-    sudo apt-get -y install python-dev
-    sudo apt-get -y install libmysqlclient-dev
+    sudo yum -y install python-dev
+    sudo yum -y install libmysqlclient-dev
 
     sudo mkdir -p /opt/monasca-api
 
@@ -1158,10 +1158,10 @@ function install_monasca_notification {
 
     echo_summary "Install Monasca monasca_notification"
 
-    sudo apt-get -y install python-dev
-    sudo apt-get -y install build-essential
-    sudo apt-get -y install python-mysqldb
-    sudo apt-get -y install libmysqlclient-dev
+    sudo yum -y install python-dev
+    sudo yum -y install build-essential
+    sudo yum -y install python-mysqldb
+    sudo yum -y install libmysqlclient-dev
 
     if [[ ! -d "${MONASCA_BASE}"/monasca-notification ]]; then
 
@@ -1222,7 +1222,7 @@ function install_monasca_notification {
 
     sudo debconf-set-selections <<< "postfix postfix/main_mailer_type string 'Local only'"
 
-    sudo apt-get -y install mailutils
+    sudo yum -y install mailutils
 
     sudo start monasca-notification || sudo restart monasca-notification
 
@@ -1244,12 +1244,12 @@ function clean_monasca_notification {
 
     sudo rm /var/log/upstart/monasca-notification.log*
 
-    sudo apt-get -y purge libmysqlclient-dev
-    sudo apt-get -y purge python-mysqldb
-    sudo apt-get -y purge build-essential
-    sudo apt-get -y purge python-dev
+    sudo yum -y purge libmysqlclient-dev
+    sudo yum -y purge python-mysqldb
+    sudo yum -y purge build-essential
+    sudo yum -y purge python-dev
 
-    sudo apt-get -y purge mailutils
+    sudo yum -y purge mailutils
 
 }
 
@@ -1422,7 +1422,7 @@ function install_monasca_keystone_client {
 
     echo_summary "Install Monasca Keystone Client"
 
-    sudo apt-get -y install python-dev
+    sudo yum -y install python-dev
 
     PIP_VIRTUAL_ENV=/opt/monasca
 
@@ -1453,7 +1453,7 @@ function clean_monasca_keystone_client {
 
     sudo rm /usr/local/bin/create_monasca_service.py
 
-    sudo apt-get -y purge python-dev
+    sudo yum -y purge python-dev
 
 }
 
@@ -1461,11 +1461,11 @@ function install_monasca_agent {
 
     echo_summary "Install Monasca monasca_agent"
 
-    sudo apt-get -y install python-dev
-    sudo apt-get -y install python-yaml
-    sudo apt-get -y install build-essential
-    sudo apt-get -y install libxml2-dev
-    sudo apt-get -y install libxslt1-dev
+    sudo yum -y install python-dev
+    sudo yum -y install python-yaml
+    sudo yum -y install build-essential
+    sudo yum -y install libxml2-dev
+    sudo yum -y install libxslt1-dev
 
     if [[ ! -d "${MONASCA_BASE}"/monasca-agent ]]; then
 
@@ -1557,11 +1557,11 @@ function clean_monasca_agent {
 
     sudo rm -rf /opt/moansca-agent
 
-    sudo apt-get -y purge libxslt1-dev
-    sudo apt-get -y purge libxml2-dev
-    sudo apt-get -y purge build-essential
-    sudo apt-get -y purge python-yaml
-    sudo apt-get -y purge python-dev
+    sudo yum -y purge libxslt1-dev
+    sudo yum -y purge libxml2-dev
+    sudo yum -y purge build-essential
+    sudo yum -y purge python-yaml
+    sudo yum -y purge python-dev
 
 }
 
@@ -1680,10 +1680,10 @@ function install_monasca_grafana {
 
     echo_summary "Install Grafana"
 
-    sudo apt-get install -y wget
+    sudo yum install -y wget
 
     curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
-    sudo apt-get install -y nodejs
+    sudo yum install -y nodejs
 
     cd "${MONASCA_BASE}"
     wget https://storage.googleapis.com/golang/go1.5.2.linux-amd64.tar.gz
